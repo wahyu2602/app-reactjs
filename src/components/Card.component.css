@@ -1,0 +1,37 @@
+.card {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  background: #f1f2f6;
+  margin-bottom: 25px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.card-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  background: #dfe4ea;
+  padding: 10px;
+}
+
+.card-content {
+  color: rgb(44, 44, 44);
+  padding: 0px 10px;
+  box-sizing: border-box;
+  height: 50px;
+  overflow: hidden;
+}
+
+.card-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: end;
+  color: blue;
+  cursor: pointer;
+  background: #dfe4ea;
+}
+
+.card-content.load-more {
+  height: 100%;
+}
