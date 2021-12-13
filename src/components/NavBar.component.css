@@ -16,10 +16,19 @@
   font-size: 1.2rem;
 }
 
-.text-right {
-  color: white;
-  text-decoration: none;
+.brand:hover {
+  color: silver;
 }
+
+.nav-item {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item:hover {
+  color: silver;
+}
+
 
 @media (max-width:900px) {
   .navbar {

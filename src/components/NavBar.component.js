@@ -4,7 +4,7 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <Link className="brand" to="/">Your Logo</Link>
-      <Link className="text-right" to="/login">
+      <Link className="nav-item" to="/login">
         Login
       </Link>
     </nav>

@@ -9,6 +9,7 @@
 .card-login {
   background: rgb(233, 251, 252);
   padding: 0px 20px;
+  padding-top: 10px;
   padding-bottom: 20px;
   width: 400px;
   box-sizing: border-box;
