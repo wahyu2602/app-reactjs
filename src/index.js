@@ -6,8 +6,14 @@ import Dashboard from './pages/dashboard/Dashboard';
 // import App from './App';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
+import DetailsProducts from './pages/detailsproduct/DetailsProducts';
 import PageNotFound from './pages/PageNotFound';
+import Registration from './pages/registration/Registration';
 import reportWebVitals from './reportWebVitals';
+import Order from './pages/order/Order';
+import firebaseApp from './config/firebase';
+
+console.log(firebaseApp);
 
 ReactDOM.render(
   <BrowserRouter>
@@ -15,6 +21,9 @@ ReactDOM.render(
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/registration" element={<Registration />} />
+      <Route path="/detail" element={<DetailsProducts />} />
+      <Route path="/order" element={< Order />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   </BrowserRouter>,

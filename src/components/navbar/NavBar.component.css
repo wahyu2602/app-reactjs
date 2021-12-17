@@ -1,0 +1,25 @@
+.link {
+  text-decoration: none;
+}
+
+.cart {
+  position: relative;
+}
+
+.sub-icons {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  right: 0;
+  background: yellow;
+  border-radius: 50%;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-style: italic;
+}

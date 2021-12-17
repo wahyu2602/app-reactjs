@@ -35,3 +35,31 @@
 .card-content.load-more {
   height: 100%;
 }
+
+.link-card {
+  text-decoration: none;
+  color: black;
+}
+
+.link-card:hover {
+  transform: translateY(-2%);
+  color: black;
+}
+
+.card-hover {
+  transition: 0.3s;
+}
+
+.card-hover:hover {
+  transform: translateY(-5%);
+}
+
+.sub-text {
+  font-size: 13px;
+  font-style: italic;
+  margin-top: -15px;
+}
+
+.img-card {
+  height: 180px;
+}
