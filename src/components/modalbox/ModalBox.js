@@ -1,4 +1,6 @@
 import { Modal, Button, Container, Row, Col } from "react-bootstrap";
+import { Link } from 'react-router-dom';
+
 function MyVerticallyCenteredModal(props) {
   return (
     <Modal
@@ -16,16 +18,20 @@ function MyVerticallyCenteredModal(props) {
         <Container>
           <Row>
             <Col lg="6">
-              <img src=".." alt=".." />
+              <img className="img-fluid" src={props.image} alt=".." />
             </Col>
             <Col lg="6">
-              <h5>NIKE</h5>
+              <h5>{props.merk}</h5>
+              <p>{props.price}</p>
             </Col>
           </Row>
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Link className="btn btn-success" to="order">
+          Proses
+        </Link>
+        <Button variant="danger" onClick={props.onHide}>Kembali Berbelanja</Button>
       </Modal.Footer>
     </Modal>
   );

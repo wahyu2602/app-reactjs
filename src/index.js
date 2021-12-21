@@ -11,22 +11,23 @@ import PageNotFound from './pages/PageNotFound';
 import Registration from './pages/registration/Registration';
 import reportWebVitals from './reportWebVitals';
 import Order from './pages/order/Order';
-import firebaseApp from './config/firebase';
-
-console.log(firebaseApp);
+import { Provider } from 'react-redux';
+import store from './config/redux';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/registration" element={<Registration />} />
-      <Route path="/detail" element={<DetailsProducts />} />
-      <Route path="/order" element={< Order />} />
-      <Route path="*" element={<PageNotFound />} />
-    </Routes>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/detail" element={<DetailsProducts />} />
+        <Route path="/order" element={< Order />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </BrowserRouter>
+  </Provider >,
   document.getElementById('root')
 );
 

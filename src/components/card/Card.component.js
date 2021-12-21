@@ -7,9 +7,17 @@ import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { Row, Col } from 'react-bootstrap';
 import { useState } from "react";
 import MyVerticallyCenteredModal from "../modalbox/ModalBox";
+import { useDispatch } from 'react-redux';
 
-export default function CardComponent(props) {
+function CardComponent(props) {
   const [modalShow, setModalShow] = useState(false);
+  const dispatch = useDispatch();
+
+  const handClick = () => {
+    dispatch({ type: 'PLUS_PROD' })
+    setModalShow(true)
+  }
+
   return (
     <>
       <Card className="card-hover">
@@ -23,7 +31,7 @@ export default function CardComponent(props) {
           <hr></hr>
           <Row >
             <Col>
-              <Button variant="primary" className="ms-1" onClick={() => setModalShow(true)}>
+              <Button variant="primary" className="ms-1" onClick={handClick}>
                 <FontAwesomeIcon icon={faCartArrowDown} />
               </Button>
             </Col>
@@ -36,9 +44,15 @@ export default function CardComponent(props) {
         </Card.Body>
       </Card>
       <MyVerticallyCenteredModal
+        merk={props.title}
+        image={props.image}
+        price={props.price}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
     </>
   )
 }
+
+
+export default CardComponent;
