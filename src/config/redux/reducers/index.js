@@ -1,5 +1,5 @@
 const initialState = {
-  totalOrder: 1,
+  totalOrder: 0,
 }
 
 const rootReducer = (state = initialState, action) => {
