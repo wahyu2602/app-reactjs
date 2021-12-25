@@ -10,18 +10,18 @@ import "./Home.css";
 // import nikeAirForce from '../../assets/images/nike-air-force.jpg';
 // import adidasWhite from '../../assets/images/adidas-white.jpg';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Home() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/prod")
-      .then(res => res.json())
+    axios.get("http://localhost:3000/prod")
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result);
+          setItems(result.data);
         },
         (error) => {
           setIsLoaded(true);
@@ -57,7 +57,7 @@ export default function Home() {
             <Row>
               {items.map(item => (
                 <Col key={item.id} lg="3">
-                  <CardComponent image={item.image} title={item.merk} price={item.harga} stockStatus={item.status} />
+                  <CardComponent data={item.id} image={item.image} title={item.merk} price={item.harga} stockStatus={item.status} />
                 </Col>
               ))}
             </Row>

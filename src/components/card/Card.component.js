@@ -25,7 +25,7 @@ function CardComponent(props) {
         <Card.Body>
           <Card.Title>{props.title}</Card.Title>
           <Card.Text className="text-end">
-            {props.price}
+            Rp. {props.price}
           </Card.Text>
           <p className="sub-text text-secondary text-end">{props.stockStatus}</p>
           <hr></hr>
@@ -36,7 +36,7 @@ function CardComponent(props) {
               </Button>
             </Col>
             <Col className="text-end">
-              <Link className="btn btn-success" to="/order">
+              <Link className="btn btn-success" to={`/order/${props.data}`}>
                 Buy Now
               </Link>
             </Col>
@@ -47,6 +47,7 @@ function CardComponent(props) {
         merk={props.title}
         image={props.image}
         price={props.price}
+        data={props.data}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />

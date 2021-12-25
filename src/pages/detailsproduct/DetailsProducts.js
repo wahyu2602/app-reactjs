@@ -15,8 +15,7 @@ function DetailsProducts() {
             <Card.Body>
               <Card.Title>Nike</Card.Title>
               <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
+                Deskripsi Products
               </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">

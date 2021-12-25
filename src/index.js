@@ -23,7 +23,7 @@ ReactDOM.render(
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/detail" element={<DetailsProducts />} />
-        <Route path="/order" element={< Order />} />
+        <Route path="/order/:data" element={< Order />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

@@ -22,13 +22,13 @@ function MyVerticallyCenteredModal(props) {
             </Col>
             <Col lg="6">
               <h5>{props.merk}</h5>
-              <p>{props.price}</p>
+              <p>Rp. {props.price}</p>
             </Col>
           </Row>
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Link className="btn btn-success" to="order">
+        <Link className="btn btn-success" to={`/order/${props.data}`}>
           Proses
         </Link>
         <Button variant="danger" onClick={props.onHide}>Kembali Berbelanja</Button>
