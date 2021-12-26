@@ -16,7 +16,7 @@ function NavBar(props) {
   const handleCart = () => {
     if (props.order > 0) {
       return (
-        <Link className="nav-link me-5 cart text-white" to="/carts">
+        <Link className="nav-link me-5 cart text-white" to="/cart">
           <span className="sub-icons">{props.order}</span>
           <FontAwesomeIcon icon={faShoppingCart} />
         </Link>

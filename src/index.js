@@ -7,6 +7,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import DetailsProducts from './pages/detailsproduct/DetailsProducts';
+import Cart from './pages/cart/Cart';
 import PageNotFound from './pages/PageNotFound';
 import Registration from './pages/registration/Registration';
 import reportWebVitals from './reportWebVitals';
@@ -23,6 +24,7 @@ ReactDOM.render(
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/detail" element={<DetailsProducts />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/order/:data" element={< Order />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
