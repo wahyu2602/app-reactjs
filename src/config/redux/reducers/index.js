@@ -12,9 +12,18 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         totalOrder: state.totalOrder - 1
       }
+    case 'todos/todosLoaded':
+      return {
+        ...state,
+        payload: action.payload,
+      }
     default:
+      console.log(state);
       return state;
   }
 }
 
 export default rootReducer;
+
+
+// 081295912919
