@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ## Runing Json Server
-json-server --watch db.json, use Open port http://localhost:3000 default
+`json-server --watch db.json` use Open port http://localhost:3000 default
 
 ### `npm start`
 
