@@ -15,22 +15,26 @@ import { useDispatch } from 'react-redux';
 import { TypeAction } from "../../config/redux/constanta";
 import { connect } from 'react-redux';
 
-function Home(props) {
+function Home({ products }) {
   const [error, setError] = useState(null);
+  const [items, setItems] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
-    axios.get("https://fakestoreapi.com/products")
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          dispatch({ type: TypeAction.TODOS_LOADED, payload: result.data })
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+    if (!items) {
+      axios.get("https://fakestoreapi.com/products")
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setItems(true)
+            dispatch({ type: TypeAction.TODOS_LOADED, products: result.data })
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+    }
   }, [])
 
   if (error) {
@@ -58,7 +62,7 @@ function Home(props) {
         <Container className="mt-5">
           <div className="full-container">
             <Row>
-              {props.payload.map(item => (
+              {products.map(item => (
                 <Col key={item.id} lg="3">
                   <CardComponent data={item.id} image={item.image} title={item.title} price={item.price} stockStatus={item.category} description={item.description} />
                 </Col>
@@ -74,7 +78,7 @@ function Home(props) {
 
 const mapStateToProps = (state) => {
   return {
-    payload: state.payload,
+    products: state.products,
   }
 }
 

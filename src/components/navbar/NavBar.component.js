@@ -6,21 +6,33 @@ import "./NavBar.component.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
+import { useEffect, useState } from "react";
 
-function NavBar(props) {
+function NavBar({ cart }) {
+
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    let count = 0;
+    cart.forEach(item => {
+      count += item.qty
+    });
+
+    setCartCount(count);
+  }, [cart, cartCount])
 
   const handleCart = () => {
-    if (props.order > 0) {
+    if (cartCount > 0) {
       return (
         <Link className="nav-link me-5 cart text-white" to="/cart">
-          <span className="sub-icons">{props.order}</span>
+          <span className="sub-icons">{cartCount}</span>
           <FontAwesomeIcon icon={faShoppingCart} />
         </Link>
       )
     } else {
       return (
         <div className="nav-link me-5 cart text-white">
-          <span className="sub-icons d-none">{props.order}</span>
+          <span className="sub-icons d-none">{cartCount}</span>
           <FontAwesomeIcon icon={faShoppingCart} />
         </div>
       )
@@ -48,7 +60,7 @@ function NavBar(props) {
 
 const mapStateToProps = (state) => {
   return {
-    order: state.totalOrder,
+    cart: state.cart,
   }
 }
 

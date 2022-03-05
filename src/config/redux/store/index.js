@@ -1,7 +1,8 @@
 const initialState = {
   totalOrder: 0,
-  payload: [],
-  chart: []
+  products: [],
+  cart: [],
+  prodItem: null
 }
 
 export default initialState;

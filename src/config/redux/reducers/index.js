@@ -1,5 +1,5 @@
-import initialState from '../store';
-import { TypeAction } from '../constanta';
+import { TypeAction } from "../constanta"
+import initialState from '../store/index'
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -11,20 +11,30 @@ const rootReducer = (state = initialState, action) => {
     case TypeAction.MINUS_PROD:
       return {
         ...state,
-        totalOrder: state.totalOrder - 1
+        cart: state.cart.filter((item) => item.id !== action.payload.id),
       }
     case TypeAction.TODOS_LOADED:
       return {
         ...state,
-        payload: action.payload,
+        products: action.products,
       }
-    case TypeAction.ADD_CHART:
+    case TypeAction.ADD_CART:
+      const item = state.products.find((prod) => prod.id === action.payload.id);
+      const readyCart = state.cart.find((item) => item.id === action.payload.id ? true : false);
       return {
         ...state,
-        chart: action.chart,
+        cart: readyCart ? state.cart.map(item => item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item) : [...state.cart, { ...item, qty: 1 }],
+      };
+    case TypeAction.UPDATE_QTY:
+      return {
+        cart: state.cart.map(item => item.id === action.payload.id ? { ...item, qty: action.payload.qty } : item)
+      }
+    case TypeAction.LOAD_ITEM:
+      return {
+        ...state,
+        prodItem: action.payload,
       }
     default:
-      console.log(state);
       return state;
   }
 }

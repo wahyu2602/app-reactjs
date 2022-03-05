@@ -9,13 +9,13 @@ import { useState } from "react";
 import MyVerticallyCenteredModal from "../modalbox/ModalBox";
 import { useDispatch } from 'react-redux';
 import { TypeAction } from "../../config/redux/constanta";
+import { connect } from 'react-redux';
+import { addCart } from '../../config/redux/dispatch';
 
 function CardComponent(props) {
   const [modalShow, setModalShow] = useState(false);
-  const dispatch = useDispatch();
-
   const handClick = () => {
-    dispatch({ type: TypeAction.PLUS_PROD })
+    props.addCart(props.data)
     setModalShow(true)
   }
 
@@ -57,5 +57,11 @@ function CardComponent(props) {
   )
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addCart: (id) => dispatch(addCart(id)),
+  }
+}
 
-export default CardComponent;
+
+export default connect(null, mapDispatchToProps)(CardComponent);
