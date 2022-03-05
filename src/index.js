@@ -14,9 +14,8 @@ import reportWebVitals from './reportWebVitals';
 import Order from './pages/order/Order';
 import { Provider } from 'react-redux';
 import store from './config/redux';
-import { fetchTodos } from './config/redux/store/fetch';
 
-store.dispatch(fetchTodos);
+store.subscribe(() => console.log(store.getState()))
 
 ReactDOM.render(
   <Provider store={store}>

@@ -8,13 +8,14 @@ import { Row, Col } from 'react-bootstrap';
 import { useState } from "react";
 import MyVerticallyCenteredModal from "../modalbox/ModalBox";
 import { useDispatch } from 'react-redux';
+import { TypeAction } from "../../config/redux/constanta";
 
 function CardComponent(props) {
   const [modalShow, setModalShow] = useState(false);
   const dispatch = useDispatch();
 
   const handClick = () => {
-    dispatch({ type: 'PLUS_PROD' })
+    dispatch({ type: TypeAction.PLUS_PROD })
     setModalShow(true)
   }
 
@@ -25,7 +26,7 @@ function CardComponent(props) {
         <Card.Body>
           <Card.Title>{props.title}</Card.Title>
           <Card.Text className="text-end">
-            Rp. {props.price}
+            $ {props.price}
           </Card.Text>
           <p className="sub-text text-secondary text-end">{props.stockStatus}</p>
           <hr></hr>
@@ -44,10 +45,11 @@ function CardComponent(props) {
         </Card.Body>
       </Card>
       <MyVerticallyCenteredModal
-        merk={props.title}
+        title={props.title}
         image={props.image}
         price={props.price}
         data={props.data}
+        description={props.description}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />

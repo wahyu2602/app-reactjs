@@ -1,6 +1,7 @@
 const initialState = {
   totalOrder: 0,
-  payload: []
+  payload: [],
+  chart: []
 }
 
 export default initialState;

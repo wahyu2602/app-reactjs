@@ -18,11 +18,12 @@ function MyVerticallyCenteredModal(props) {
         <Container>
           <Row>
             <Col lg="6">
-              <img className="img-fluid" src={props.image} alt=".." />
+              <img className="img-fluid" src={props.image} alt={props.title} />
             </Col>
             <Col lg="6">
-              <h5>{props.merk}</h5>
-              <p>Rp. {props.price}</p>
+              <h5>{props.title}</h5>
+              <p>$ {props.price}</p>
+              <p>{props.description}</p>
             </Col>
           </Row>
         </Container>

@@ -1,21 +1,27 @@
 import initialState from '../store';
+import { TypeAction } from '../constanta';
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'PLUS_PROD':
+    case TypeAction.PLUS_PROD:
       return {
         ...state,
         totalOrder: state.totalOrder + 1
       }
-    case 'MINUS_PROD':
+    case TypeAction.MINUS_PROD:
       return {
         ...state,
         totalOrder: state.totalOrder - 1
       }
-    case 'todos/todosLoaded':
+    case TypeAction.TODOS_LOADED:
       return {
         ...state,
         payload: action.payload,
+      }
+    case TypeAction.ADD_CHART:
+      return {
+        ...state,
+        chart: action.chart,
       }
     default:
       console.log(state);
@@ -24,6 +30,3 @@ const rootReducer = (state = initialState, action) => {
 }
 
 export default rootReducer;
-
-
-// 081295912919

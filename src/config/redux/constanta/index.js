@@ -1,0 +1,6 @@
+export const TypeAction = {
+  PLUS_PROD: 'PLUS_PROD',
+  MINUS_PROD: 'MINUS_PROD',
+  TODOS_LOADED: 'TODOS_LOADED',
+  ADD_CHART: 'ADD_CHART'
+}

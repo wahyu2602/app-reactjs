@@ -51,7 +51,7 @@
 }
 
 .card-hover:hover {
-  transform: translateY(-5%);
+  transform: translateY(-2%);
 }
 
 .sub-text {
@@ -61,5 +61,5 @@
 }
 
 .img-card {
-  height: 180px;
+  height: 250px;
 }

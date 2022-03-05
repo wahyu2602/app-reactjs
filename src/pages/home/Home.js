@@ -11,17 +11,20 @@ import "./Home.css";
 // import adidasWhite from '../../assets/images/adidas-white.jpg';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { TypeAction } from "../../config/redux/constanta";
+import { connect } from 'react-redux';
 
-export default function Home() {
+function Home(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios.get("http://localhost:3000/prod")
+    axios.get("https://fakestoreapi.com/products")
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result.data);
+          dispatch({ type: TypeAction.TODOS_LOADED, payload: result.data })
         },
         (error) => {
           setIsLoaded(true);
@@ -55,9 +58,9 @@ export default function Home() {
         <Container className="mt-5">
           <div className="full-container">
             <Row>
-              {items.map(item => (
+              {props.payload.map(item => (
                 <Col key={item.id} lg="3">
-                  <CardComponent data={item.id} image={item.image} title={item.merk} price={item.harga} stockStatus={item.status} />
+                  <CardComponent data={item.id} image={item.image} title={item.title} price={item.price} stockStatus={item.category} description={item.description} />
                 </Col>
               ))}
             </Row>
@@ -68,3 +71,11 @@ export default function Home() {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    payload: state.payload,
+  }
+}
+
+export default connect(mapStateToProps)(Home);

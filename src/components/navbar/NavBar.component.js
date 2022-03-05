@@ -9,10 +9,6 @@ import { connect } from 'react-redux';
 
 function NavBar(props) {
 
-  // const addCart = {
-  //   add: 1
-  // }
-
   const handleCart = () => {
     if (props.order > 0) {
       return (
@@ -36,7 +32,7 @@ function NavBar(props) {
       <Navbar bg="primary" variant="dark">
         <Container>
           <Link className="navbar-brand" to="/">
-            Sepatu Kekini
+            Happy Shop
           </Link>
           <Nav className="ms-auto">
             {handleCart()}
