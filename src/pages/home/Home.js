@@ -9,26 +9,25 @@ import "./Home.css";
 // import nikeAirMax from '../../assets/images/nike-air-max.jpg';
 // import nikeAirForce from '../../assets/images/nike-air-force.jpg';
 // import adidasWhite from '../../assets/images/adidas-white.jpg';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { loadProducts } from '../../config/redux/dispatch';
-import API from '../../config/services';
+import { loadProducts, statusLoad } from '../../config/redux/dispatch';
+import { API } from '../../config/services';
 
-function Home({ products, loadProducts }) {
-  const [proces, setProces] = useState(false);
+function Home({ products, loadProducts, statusLoad, getStatusLoad }) {
   useEffect(() => {
-    if (!proces) {
+    if (!getStatusLoad) {
       API.get("products")
         .then(
           (result) => {
-            setProces(true)
-            loadProducts(result.data)
+            statusLoad(true);
+            loadProducts(result.data);
           }
         )
     }
-  }, [loadProducts, products, proces])
+  }, [loadProducts, products, statusLoad, getStatusLoad])
 
-  if (!proces) {
+  if (!getStatusLoad) {
     return (
       <div>
         <NavBar />
@@ -67,12 +66,14 @@ function Home({ products, loadProducts }) {
 const mapStateToProps = (state) => {
   return {
     products: state.products,
+    getStatusLoad: state.statusLoad,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadProducts: (products) => dispatch(loadProducts(products)),
+    statusLoad: (boolean) => dispatch(statusLoad(boolean),)
   }
 }
 

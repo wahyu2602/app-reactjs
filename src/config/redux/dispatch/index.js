@@ -1,5 +1,12 @@
 import { TypeAction } from "../constanta";
 
+export const statusLoad = (boolean) => {
+  return {
+    type: TypeAction.STATUS_LOAD,
+    payload: boolean
+  }
+}
+
 export const loadProducts = (products) => {
   return {
     type: TypeAction.TODOS_LOADED,

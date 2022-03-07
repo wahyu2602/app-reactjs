@@ -1,4 +1,5 @@
 export const TypeAction = {
+  STATUS_LOAD: 'STATUS_LOAD',
   PLUS_PROD: 'PLUS_PROD',
   MINUS_PROD: 'MINUS_PROD',
   TODOS_LOADED: 'TODOS_LOADED',

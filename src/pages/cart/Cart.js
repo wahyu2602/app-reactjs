@@ -3,15 +3,19 @@ import NavBar from '../../components/navbar/NavBar.component';
 import Footer from '../../components/footer/Footer.component';
 import { Container, Card, Row, Col, Image } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 function Cart({ cart }) {
+  const [totalQty, setTotalQty] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+
   return (
     <>
       <NavBar />
       <Container>
         <div className="full-container">
           <Row className="mt-5">
-            <Col className="col-6" >
+            <Col lg="6" >
               <Row>
                 {cart.map(item => (
                   <Col className="col-12" key={item.id}>
@@ -39,17 +43,17 @@ function Cart({ cart }) {
                 ))}
               </Row>
             </Col>
-            <Col className="col-6">
+            <Col lg="6">
               <Card>
                 <Card.Body>
                   <Card.Title>
                     Items
                   </Card.Title>
                   <Card.Text>
-                    Total Qty :
+                    Total Qty : {totalQty}
                   </Card.Text>
                   <Card.Text>
-                    Total : $
+                    Total : $ {totalPrice}
                   </Card.Text>
                 </Card.Body>
               </Card>

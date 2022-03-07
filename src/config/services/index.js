@@ -1,7 +1,8 @@
 import Axios from 'axios';
 
-export default Axios.create({
+export const API = Axios.create({
   baseURL: "https://fakestoreapi.com/"
 });
+
 
 

@@ -3,6 +3,11 @@ import initialState from '../store/index'
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case TypeAction.STATUS_LOAD:
+      return {
+        ...state,
+        statusLoad: action.payload,
+      }
     case TypeAction.PLUS_PROD:
       return {
         ...state,
