@@ -25,7 +25,7 @@ export const addCart = (itemId) => {
 
 export const removeCart = (itemId) => {
   return {
-    type: TypeAction.MINUS_PROD,
+    type: TypeAction.REMOVE_CART,
     payload: {
       id: itemId,
     }

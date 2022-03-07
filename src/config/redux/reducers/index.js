@@ -8,12 +8,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         statusLoad: action.payload,
       }
-    case TypeAction.PLUS_PROD:
-      return {
-        ...state,
-        totalOrder: state.totalOrder + 1
-      }
-    case TypeAction.MINUS_PROD:
+    case TypeAction.REMOVE_CART:
       return {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload.id),
