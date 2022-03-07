@@ -1,10 +1,27 @@
 import './Cart.css';
 import NavBar from '../../components/navbar/NavBar.component';
 import Footer from '../../components/footer/Footer.component';
-import { Container, Card, Row, Col, Image } from 'react-bootstrap';
+import { Container, Card, Row, Col, Image, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { updateQty } from '../../config/redux/dispatch'
 
-function Cart({ cart }) {
+function Cart({ cart, updateQty }) {
+  const [totalQty, setTotalQty] = useState();
+  const [totalPrice, setTotalPrice] = useState();
+
+  useEffect(() => {
+    let getQty = 0;
+    let getPrice = 0;
+    cart.forEach((item) => {
+      getQty += item.qty
+      getPrice += item.totalPrice;
+    })
+
+    setTotalQty(getQty);
+    setTotalPrice(getPrice);
+  }, [cart, setTotalQty, setTotalPrice]);
+
   return (
     <>
       <NavBar />
@@ -26,11 +43,17 @@ function Cart({ cart }) {
                               {item.title}
                             </Card.Title>
                             <Card.Text>
-                              $ {item.price}
+                              $ {item.totalPrice}
                             </Card.Text>
-                            <Card.Text>
-                              Qty : {item.qty}
-                            </Card.Text>
+                            <InputGroup>
+                              <FormControl
+                                type="number"
+                                value={item.qty}
+                                onChange={(e) => updateQty(item.id, Number(e.target.value))}
+                              />
+                              <Button variant="outline-primary" onClick={(e) => updateQty(item.id, item.qty + 1)}>+</Button>
+                              <Button variant="outline-danger" onClick={(e) => updateQty(item.id, item.qty - 1)}>-</Button>
+                            </InputGroup>
                           </Col>
                         </Row>
                       </Card.Body>
@@ -46,10 +69,10 @@ function Cart({ cart }) {
                     Items
                   </Card.Title>
                   <Card.Text>
-                    Total Qty :
+                    Total Qty : {totalQty}
                   </Card.Text>
                   <Card.Text>
-                    Total : $
+                    Total : $ {totalPrice}
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -68,4 +91,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(Cart);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateQty: (id, value) => dispatch(updateQty(id, value))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

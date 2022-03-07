@@ -24,15 +24,17 @@ const rootReducer = (state = initialState, action) => {
         products: action.payload,
       }
     case TypeAction.ADD_CART:
-      const item = state.products.find((prod) => prod.id === action.payload.id);
+      const newCart = state.products.find((prod) => prod.id === action.payload.id);
       const readyCart = state.cart.find((item) => item.id === action.payload.id ? true : false);
       return {
         ...state,
-        cart: readyCart ? state.cart.map(item => item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item) : [...state.cart, { ...item, qty: 1 }],
+        cart: readyCart ? state.cart.map(item => item.id === action.payload.id ? { ...item, qty: item.qty + 1, totalPrice: item.totalPrice + item.price } : item) : [...state.cart, { ...newCart, qty: 1, totalPrice: newCart.price }],
       };
     case TypeAction.UPDATE_QTY:
+      const conditionValue = action.payload.qty <= 0 ? false : true;
       return {
-        cart: state.cart.map(item => item.id === action.payload.id ? { ...item, qty: action.payload.qty } : item)
+        ...state,
+        cart: conditionValue ? state.cart.map(item => item.id === action.payload.id ? { ...item, qty: action.payload.qty, totalPrice: item.price * action.payload.qty } : item) : state.cart.map(item => item.id === action.payload.id ? { ...item, qty: 1, totalPrice: item.price } : item)
       }
     case TypeAction.LOAD_ITEM:
       return {
