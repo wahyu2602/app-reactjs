@@ -11,7 +11,7 @@ import Cart from './pages/cart/Cart';
 import PageNotFound from './pages/PageNotFound';
 import Registration from './pages/registration/Registration';
 import reportWebVitals from './reportWebVitals';
-import Order from './pages/order/Order';
+// import Order from './pages/order/Order';
 import { Provider } from 'react-redux';
 import store from './config/redux';
 
@@ -25,7 +25,7 @@ ReactDOM.render(
         <Route path="/registration" element={<Registration />} />
         <Route path="/detail" element={<DetailsProducts />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/order/:data" element={< Order />} />
+        {/* <Route path="/order/:data" element={< Order />} /> */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
