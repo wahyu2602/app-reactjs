@@ -16,7 +16,7 @@ const rootReducer = (state = initialState, action) => {
     case TypeAction.TODOS_LOADED:
       return {
         ...state,
-        products: action.products,
+        products: action.payload,
       }
     case TypeAction.ADD_CART:
       const item = state.products.find((prod) => prod.id === action.payload.id);

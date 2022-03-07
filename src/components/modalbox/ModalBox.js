@@ -18,18 +18,18 @@ function MyVerticallyCenteredModal(props) {
         <Container>
           <Row>
             <Col lg="6">
-              <img className="img-fluid" src={props.image} alt={props.title} />
+              <img className="img-fluid" src={props.data.image} alt={props.data.title} />
             </Col>
             <Col lg="6">
-              <h5>{props.title}</h5>
-              <p>$ {props.price}</p>
-              <p>{props.description}</p>
+              <h5>{props.data.title}</h5>
+              <p>$ {props.data.price}</p>
+              <p>{props.data.description}</p>
             </Col>
           </Row>
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Link className="btn btn-success" to={`/order/${props.data}`}>
+        <Link className="btn btn-success" to={`/order/${props.data.id}`}>
           Proses
         </Link>
         <Button variant="danger" onClick={props.onHide}>Kembali Berbelanja</Button>

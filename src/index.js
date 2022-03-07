@@ -15,8 +15,6 @@ import Order from './pages/order/Order';
 import { Provider } from 'react-redux';
 import store from './config/redux';
 
-store.subscribe(() => console.log(store.getState()))
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

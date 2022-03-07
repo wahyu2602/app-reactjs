@@ -7,28 +7,26 @@ import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { Row, Col } from 'react-bootstrap';
 import { useState } from "react";
 import MyVerticallyCenteredModal from "../modalbox/ModalBox";
-import { useDispatch } from 'react-redux';
-import { TypeAction } from "../../config/redux/constanta";
 import { connect } from 'react-redux';
 import { addCart } from '../../config/redux/dispatch';
 
-function CardComponent(props) {
+function CardComponent({ data, addCart }) {
   const [modalShow, setModalShow] = useState(false);
   const handClick = () => {
-    props.addCart(props.data)
+    addCart(data.id)
     setModalShow(true)
   }
 
   return (
     <>
       <Card className="card-hover">
-        <Card.Img className="img-card" variant="top" src={props.image} />
+        <Card.Img className="img-card" variant="top" src={data.image} />
         <Card.Body>
-          <Card.Title>{props.title}</Card.Title>
+          <Card.Title>{data.title}</Card.Title>
           <Card.Text className="text-end">
-            $ {props.price}
+            $ {data.price}
           </Card.Text>
-          <p className="sub-text text-secondary text-end">{props.stockStatus}</p>
+          <p className="sub-text text-secondary text-end">{data.category}</p>
           <hr></hr>
           <Row >
             <Col>
@@ -37,7 +35,7 @@ function CardComponent(props) {
               </Button>
             </Col>
             <Col className="text-end">
-              <Link className="btn btn-success" to={`/order/${props.data}`}>
+              <Link className="btn btn-success" to={`/order/${data.id}`}>
                 Buy Now
               </Link>
             </Col>
@@ -45,11 +43,7 @@ function CardComponent(props) {
         </Card.Body>
       </Card>
       <MyVerticallyCenteredModal
-        title={props.title}
-        image={props.image}
-        price={props.price}
-        data={props.data}
-        description={props.description}
+        data={data}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />

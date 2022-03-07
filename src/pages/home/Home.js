@@ -10,45 +10,32 @@ import "./Home.css";
 // import nikeAirForce from '../../assets/images/nike-air-force.jpg';
 // import adidasWhite from '../../assets/images/adidas-white.jpg';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { TypeAction } from "../../config/redux/constanta";
 import { connect } from 'react-redux';
+import { loadProducts } from '../../config/redux/dispatch';
+import API from '../../config/services';
 
-function Home({ products }) {
-  const [error, setError] = useState(null);
-  const [items, setItems] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const dispatch = useDispatch();
+function Home({ products, loadProducts }) {
+  const [proces, setProces] = useState(false);
   useEffect(() => {
-    if (!items) {
-      axios.get("https://fakestoreapi.com/products")
+    if (!proces) {
+      API.get("products")
         .then(
           (result) => {
-            setIsLoaded(true);
-            setItems(true)
-            dispatch({ type: TypeAction.TODOS_LOADED, products: result.data })
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
+            setProces(true)
+            loadProducts(result.data)
           }
         )
     }
-  }, [])
+  }, [loadProducts, products])
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  if (!proces) {
     return (
       <div>
         <NavBar />
         <Container className="mt-5">
           <div className="full-container">
-            <Row className="jutify-content-center align-items-center">
-              <Col>
-                <p className="text-center">Is Loading ...</p>
-              </Col>
+            <Row>
+              <p className="text-center">Loading ...</p>
             </Row>
           </div>
         </Container>
@@ -64,7 +51,7 @@ function Home({ products }) {
             <Row>
               {products.map(item => (
                 <Col key={item.id} lg="3">
-                  <CardComponent data={item.id} image={item.image} title={item.title} price={item.price} stockStatus={item.category} description={item.description} />
+                  <CardComponent data={item} />
                 </Col>
               ))}
             </Row>
@@ -74,6 +61,7 @@ function Home({ products }) {
       </div>
     )
   }
+
 }
 
 const mapStateToProps = (state) => {
@@ -82,4 +70,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadProducts: (products) => dispatch(loadProducts(products)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

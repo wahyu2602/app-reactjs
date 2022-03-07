@@ -1,5 +1,12 @@
 import { TypeAction } from "../constanta";
 
+export const loadProducts = (products) => {
+  return {
+    type: TypeAction.TODOS_LOADED,
+    payload: products
+  }
+}
+
 export const addCart = (itemId) => {
   return {
     type: TypeAction.ADD_CART,
