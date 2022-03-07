@@ -4,9 +4,9 @@ import Footer from '../../components/footer/Footer.component';
 import { Container, Card, Row, Col, Image, Button, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { updateQty } from '../../config/redux/dispatch'
+import { updateQty, removeCart } from '../../config/redux/dispatch'
 
-function Cart({ cart, updateQty }) {
+function Cart({ cart, updateQty, removeCart }) {
   const [totalQty, setTotalQty] = useState();
   const [totalPrice, setTotalPrice] = useState();
 
@@ -54,6 +54,7 @@ function Cart({ cart, updateQty }) {
                               <Button variant="outline-primary" onClick={(e) => updateQty(item.id, item.qty + 1)}>+</Button>
                               <Button variant="outline-danger" onClick={(e) => updateQty(item.id, item.qty - 1)}>-</Button>
                             </InputGroup>
+                            <Button variant="danger" className="mt-2" onClick={(e) => removeCart(item.id)}>Delete</Button>
                           </Col>
                         </Row>
                       </Card.Body>
@@ -93,7 +94,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateQty: (id, value) => dispatch(updateQty(id, value))
+    updateQty: (id, value) => dispatch(updateQty(id, value)),
+    removeCart: (id) => dispatch(removeCart(id)),
   }
 }
 
