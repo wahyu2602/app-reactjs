@@ -8,17 +8,7 @@ import { connect } from 'react-redux';
 
 function Order(props) {
   let params = useParams();
-
   const [item, setItems] = useState([]);
-
-  useEffect(() => {
-    props.payload.map((prod) => {
-      if (prod.id == params.data) {
-        setItems(prod)
-      }
-    })
-  }, [params.data]);
-
   return (
     <>
       <NavBar />
