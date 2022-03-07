@@ -26,7 +26,7 @@ function Home({ products, loadProducts }) {
           }
         )
     }
-  }, [loadProducts, products])
+  }, [loadProducts, products, proces])
 
   if (!proces) {
     return (
