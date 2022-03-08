@@ -43,7 +43,10 @@ function Cart({ cart, updateQty, removeCart }) {
                               {item.title}
                             </Card.Title>
                             <Card.Text>
-                              $ {item.totalPrice}
+                              Price : $ {item.price}
+                            </Card.Text>
+                            <Card.Text>
+                              Total Price : $ {item.totalPrice}
                             </Card.Text>
                             <InputGroup>
                               <FormControl
@@ -75,6 +78,7 @@ function Cart({ cart, updateQty, removeCart }) {
                   <Card.Text>
                     Total : $ {totalPrice}
                   </Card.Text>
+                  <Button variant="success">Process</Button>
                 </Card.Body>
               </Card>
             </Col>

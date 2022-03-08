@@ -48,3 +48,13 @@ export const loadItem = (item) => {
     payload: item
   }
 }
+
+export const updateQtyOrder = (itemId, value) => {
+  return {
+    type: TypeAction.UPDATE_QTY_ORDER,
+    payload: {
+      id: itemId,
+      qty: value,
+    }
+  }
+}

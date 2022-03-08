@@ -6,4 +6,5 @@ export const TypeAction = {
   ADD_CART: 'ADD_CART',
   UPDATE_QTY: 'UPDATE_QTY',
   LOAD_ITEM: 'LOAD_ITEM',
+  UPDATE_QTY_ORDER: 'UPDATE_QTY_ORDER',
 }

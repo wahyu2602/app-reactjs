@@ -32,9 +32,17 @@ const rootReducer = (state = initialState, action) => {
         cart: conditionValue ? state.cart.map(item => item.id === action.payload.id ? { ...item, qty: action.payload.qty, totalPrice: item.price * action.payload.qty } : item) : state.cart.map(item => item.id === action.payload.id ? { ...item, qty: 1, totalPrice: item.price } : item)
       }
     case TypeAction.LOAD_ITEM:
+      const item = state.products.find((prod) => prod.id === action.payload.id);
       return {
         ...state,
-        prodItem: action.payload,
+        prodItem: { ...action.payload, qty: 1, totalPrice: item.price },
+      }
+    case TypeAction.UPDATE_QTY_ORDER:
+      const conditionValueOrder = action.payload.qty <= 0 ? false : true;
+      const itemOrder = state.prodItem;
+      return {
+        ...state,
+        prodItem: conditionValueOrder ? { ...itemOrder, qty: action.payload.qty, totalPrice: action.payload.qty * itemOrder.price } : { ...itemOrder, qty: 1, totalOrder: itemOrder.price }
       }
     default:
       return state;

@@ -8,9 +8,9 @@ import { Row, Col } from 'react-bootstrap';
 import { useState } from "react";
 import MyVerticallyCenteredModal from "../modalbox/ModalBox";
 import { connect } from 'react-redux';
-import { addCart } from '../../config/redux/dispatch';
+import { addCart, loadItem } from '../../config/redux/dispatch';
 
-function CardComponent({ data, addCart }) {
+function CardComponent({ data, addCart, loadItem }) {
   const [modalShow, setModalShow] = useState(false);
   const handClick = () => {
     addCart(data.id)
@@ -35,7 +35,7 @@ function CardComponent({ data, addCart }) {
               </Button>
             </Col>
             <Col className="text-end">
-              <Link className="btn btn-success" to={`/order/${data.id}`}>
+              <Link className="btn btn-success" to={"/order"} onClick={(e) => loadItem(data)}>
                 Buy Now
               </Link>
             </Col>
@@ -54,6 +54,7 @@ function CardComponent({ data, addCart }) {
 const mapDispatchToProps = (dispatch) => {
   return {
     addCart: (id) => dispatch(addCart(id)),
+    loadItem: (item) => dispatch(loadItem(item)),
   }
 }
 
