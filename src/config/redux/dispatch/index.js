@@ -58,3 +58,12 @@ export const updateQtyOrder = (itemId, value) => {
     }
   }
 }
+
+export const popUpModalBox = (itemId) => {
+  return {
+    type: TypeAction.POP_UP_MODALBOX,
+    payload: {
+      id: itemId
+    }
+  }
+}

@@ -5,7 +5,22 @@ import { Container, Card, Row, Col, Image, Button, InputGroup, FormControl } fro
 import { connect } from 'react-redux';
 import { updateQtyOrder, addCart } from '../../config/redux/dispatch';
 
-function Order({ item, updateQtyOrder, addCart }) {
+function Order({ item, updateQtyOrder, addCart, cart }) {
+
+  const handleSituation = () => {
+    const carts = cart.find((prod) => prod.id === item.id) ? true : false;
+    console.log(carts);
+    if (carts) {
+      return (
+        <Button variant="secondary" className="mt-2" disabled>Add To Cart</Button>
+      );
+    } else {
+      return (
+        <Button variant="primary" className="mt-2" onClick={(e) => addCart(item.id)}>Add To Cart</Button>
+      );
+    }
+  }
+
   return (
     <>
       <NavBar />
@@ -36,7 +51,7 @@ function Order({ item, updateQtyOrder, addCart }) {
                         <Card.Text>
                           {item.description}
                         </Card.Text>
-                        <Button variant="primary" className="mt-2" onClick={(e) => addCart(item.id)}>Add To Cart</Button>
+                        {handleSituation()}
                       </Row>
                     </Card.Body>
                   </Card>
@@ -81,6 +96,7 @@ function Order({ item, updateQtyOrder, addCart }) {
 const mapStateToProps = (state) => {
   return {
     item: state.prodItem,
+    cart: state.cart,
   }
 }
 

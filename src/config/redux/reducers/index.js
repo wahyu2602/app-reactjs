@@ -44,6 +44,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         prodItem: conditionValueOrder ? { ...itemOrder, qty: action.payload.qty, totalPrice: action.payload.qty * itemOrder.price } : { ...itemOrder, qty: 1, totalOrder: itemOrder.price }
       }
+    case TypeAction.POP_UP_MODALBOX:
+      return {
+        ...state,
+        modalBox: state.products.find((prod) => prod.id === action.payload.id)
+      }
     default:
       return state;
   }

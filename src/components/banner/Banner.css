@@ -1,0 +1,12 @@
+@media (min-width: 991.98px) {
+  .carousel-item {
+    height: 450px !important;
+    position: relative;
+  }
+  
+  .carousel-item img {
+    top: -40%;
+    position: absolute;
+    width: 100%;
+  }
+}

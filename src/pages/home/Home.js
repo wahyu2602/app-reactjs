@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loadProducts, statusLoad } from '../../config/redux/dispatch';
 import { API } from '../../config/services';
+import Banner from "../../components/banner/Banner.component";
 
 function Home({ products, loadProducts, statusLoad, getStatusLoad }) {
   useEffect(() => {
@@ -31,6 +32,7 @@ function Home({ products, loadProducts, statusLoad, getStatusLoad }) {
     return (
       <div>
         <NavBar />
+        <Banner />
         <Container className="mt-5">
           <div className="full-container">
             <Row>
@@ -45,6 +47,7 @@ function Home({ products, loadProducts, statusLoad, getStatusLoad }) {
     return (
       <div>
         <NavBar />
+        <Banner />
         <Container className="mt-5">
           <div className="full-container">
             <Row>

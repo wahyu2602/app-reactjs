@@ -2,7 +2,8 @@ const initialState = {
   products: [],
   statusLoad: false,
   cart: [],
-  prodItem: null
+  prodItem: null,
+  modalBox: null
 }
 
 export default initialState;

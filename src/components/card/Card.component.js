@@ -8,13 +8,14 @@ import { Row, Col } from 'react-bootstrap';
 import { useState } from "react";
 import MyVerticallyCenteredModal from "../modalbox/ModalBox";
 import { connect } from 'react-redux';
-import { addCart, loadItem } from '../../config/redux/dispatch';
+import { addCart, loadItem, popUpModalBox } from '../../config/redux/dispatch';
 
-function CardComponent({ data, addCart, loadItem }) {
+function CardComponent({ data, addCart, loadItem, popUpModalBox }) {
   const [modalShow, setModalShow] = useState(false);
   const handClick = () => {
-    addCart(data.id)
-    setModalShow(true)
+    addCart(data.id);
+    setModalShow(true);
+    popUpModalBox(data.id);
   }
 
   return (
@@ -35,7 +36,7 @@ function CardComponent({ data, addCart, loadItem }) {
               </Button>
             </Col>
             <Col className="text-end">
-              <Link className="btn btn-success" to={"/order"} onClick={(e) => loadItem(data)}>
+              <Link className="btn btn-success" to="/order" onClick={(e) => loadItem(data)}>
                 Buy Now
               </Link>
             </Col>
@@ -43,7 +44,6 @@ function CardComponent({ data, addCart, loadItem }) {
         </Card.Body>
       </Card>
       <MyVerticallyCenteredModal
-        data={data}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
@@ -55,8 +55,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addCart: (id) => dispatch(addCart(id)),
     loadItem: (item) => dispatch(loadItem(item)),
+    popUpModalBox: (id) => dispatch(popUpModalBox(id))
   }
 }
-
 
 export default connect(null, mapDispatchToProps)(CardComponent);

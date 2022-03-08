@@ -48,8 +48,11 @@ function NavBar({ cart }) {
           </Link>
           <Nav className="ms-auto">
             {handleCart()}
-            <Link className="nav-link btn btn-success text-white" to="/login">
+            <Link className="nav-link btn btn-success text-white me-3" to="/login">
               Login
+            </Link>
+            <Link className="nav-link btn btn-warning text-white" to="/login">
+              Sign Up
             </Link>
           </Nav>
         </Container>
