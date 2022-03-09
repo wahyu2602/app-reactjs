@@ -24,7 +24,7 @@ function Home({ products, loadProducts, statusLoad, getStatusLoad }) {
             statusLoad(true);
             loadProducts(result.data);
           }
-        )
+        ).catch(statusLoad(false))
     }
   }, [loadProducts, products, statusLoad, getStatusLoad])
 
