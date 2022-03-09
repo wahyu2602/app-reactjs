@@ -32,7 +32,6 @@ function NavBar({ cart }) {
     } else {
       return (
         <div className="nav-link me-5 cart text-white">
-          <span className="sub-icons d-none">{cartCount}</span>
           <FontAwesomeIcon icon={faShoppingCart} />
         </div>
       )

@@ -1,12 +1,12 @@
 import './Cart.css';
 import NavBar from '../../components/navbar/NavBar.component';
 import Footer from '../../components/footer/Footer.component';
-import { Container, Card, Row, Col, Image, Button, InputGroup, FormControl } from 'react-bootstrap';
+import { Container, Card, Row, Col, Image, Button, InputGroup, FormControl, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { updateQty, removeCart } from '../../config/redux/dispatch'
+import { updateQty, removeCart, checkedLoad } from '../../config/redux/dispatch';
 
-function Cart({ cart, updateQty, removeCart }) {
+function Cart({ cart, updateQty, removeCart, checkedLoad }) {
   const [totalQty, setTotalQty] = useState();
   const [totalPrice, setTotalPrice] = useState();
 
@@ -14,8 +14,10 @@ function Cart({ cart, updateQty, removeCart }) {
     let getQty = 0;
     let getPrice = 0;
     cart.forEach((item) => {
-      getQty += item.qty
-      getPrice += item.totalPrice;
+      if (item.checked) {
+        getQty += item.qty
+        getPrice += item.totalPrice;
+      }
     })
 
     setTotalQty(getQty);
@@ -35,7 +37,7 @@ function Cart({ cart, updateQty, removeCart }) {
                     <Card>
                       <Card.Body>
                         <Row>
-                          <Col className="col-6">
+                          <Col className="col-4">
                             <Image className="img-100" src={item.image} fluid />
                           </Col>
                           <Col className="col-6">
@@ -58,6 +60,9 @@ function Cart({ cart, updateQty, removeCart }) {
                               <Button variant="outline-danger" onClick={(e) => updateQty(item.id, item.qty - 1)}>-</Button>
                             </InputGroup>
                             <Button variant="danger" className="mt-2" onClick={(e) => removeCart(item.id)}>Delete</Button>
+                          </Col>
+                          <Col>
+                            <Form.Check className="text-end" aria-label="option 1" checked={item.checked} onChange={(e) => (checkedLoad(item.id, item.checked ? false : true))} />
                           </Col>
                         </Row>
                       </Card.Body>
@@ -100,6 +105,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateQty: (id, value) => dispatch(updateQty(id, value)),
     removeCart: (id) => dispatch(removeCart(id)),
+    checkedLoad: (id, checked) => dispatch(checkedLoad(id, checked)),
   }
 }
 

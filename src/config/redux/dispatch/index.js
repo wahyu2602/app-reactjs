@@ -67,3 +67,13 @@ export const popUpModalBox = (itemId) => {
     }
   }
 }
+
+export const checkedLoad = (itemId, checked) => {
+  return {
+    type: TypeAction.CHECKED_CART,
+    payload: {
+      id: itemId,
+      checked: checked,
+    }
+  }
+}

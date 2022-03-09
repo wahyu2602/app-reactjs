@@ -23,7 +23,7 @@ const rootReducer = (state = initialState, action) => {
       const readyCart = state.cart.find((item) => item.id === action.payload.id ? true : false);
       return {
         ...state,
-        cart: readyCart ? state.cart.map(item => item.id === action.payload.id ? { ...item, qty: item.qty + 1, totalPrice: item.totalPrice + item.price } : item) : [...state.cart, { ...newCart, qty: 1, totalPrice: newCart.price }],
+        cart: readyCart ? state.cart.map(item => item.id === action.payload.id ? { ...item, qty: item.qty + 1, totalPrice: item.totalPrice + item.price } : item) : [...state.cart, { ...newCart, qty: 1, totalPrice: newCart.price, checked: true }],
       };
     case TypeAction.UPDATE_QTY:
       const conditionValue = action.payload.qty <= 0 ? false : true;
@@ -48,6 +48,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         modalBox: state.products.find((prod) => prod.id === action.payload.id)
+      }
+    case TypeAction.CHECKED_CART:
+      return {
+        ...state,
+        cart: state.cart.map((prod) => prod.id === action.payload.id ? { ...prod, checked: action.payload.checked } : prod),
       }
     default:
       return state;
