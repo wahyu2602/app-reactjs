@@ -83,7 +83,10 @@ function Cart({ cart, updateQty, removeCart, checkedLoad }) {
                   <Card.Text>
                     Total : $ {totalPrice}
                   </Card.Text>
-                  <Button variant="success">Process</Button>
+                  {totalQty === 0 && totalPrice === 0 ?
+                    <Button variant="secondary" disabled>Process</Button> :
+                    <Button variant="success">Process</Button>
+                  }
                 </Card.Body>
               </Card>
             </Col>
