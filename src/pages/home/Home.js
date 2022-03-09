@@ -12,7 +12,7 @@ import "./Home.css";
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loadProducts, statusLoad } from '../../config/redux/dispatch';
-import { API } from '../../config/services';
+import { API, dataProducts } from '../../config/services';
 import Banner from "../../components/banner/Banner.component";
 
 function Home({ products, loadProducts, statusLoad, getStatusLoad }) {
@@ -24,7 +24,10 @@ function Home({ products, loadProducts, statusLoad, getStatusLoad }) {
             statusLoad(true);
             loadProducts(result.data);
           }
-        ).catch(statusLoad(false))
+        ).catch(() => {
+          statusLoad(true);
+          loadProducts(dataProducts)
+        })
     }
   }, [loadProducts, products, statusLoad, getStatusLoad])
 
