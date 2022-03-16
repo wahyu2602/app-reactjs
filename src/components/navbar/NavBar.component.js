@@ -4,7 +4,7 @@ import { Nav } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import "./NavBar.component.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { useEffect, useState } from "react";
 
@@ -24,14 +24,14 @@ function NavBar({ cart }) {
   const handleCart = () => {
     if (cartCount > 0) {
       return (
-        <Link className="nav-link me-5 cart text-white" to="/cart">
+        <Link className="nav-link cart text-white" to="/cart">
           <span className="sub-icons">{cartCount}</span>
           <FontAwesomeIcon icon={faShoppingCart} />
         </Link>
       )
     } else {
       return (
-        <div className="nav-link me-5 cart text-white">
+        <div className="nav-link cart text-white">
           <FontAwesomeIcon icon={faShoppingCart} />
         </div>
       )
@@ -47,8 +47,9 @@ function NavBar({ cart }) {
           </Link>
           <Nav className="ms-auto">
             {handleCart()}
+            <span className="line"></span>
             <Link className="nav-link btn btn-success text-white me-3" to="/login">
-              Login
+              <FontAwesomeIcon icon={faSignInAlt} />
             </Link>
           </Nav>
         </Container>
