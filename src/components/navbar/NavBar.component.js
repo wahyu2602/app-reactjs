@@ -47,10 +47,6 @@ function NavBar({ cart }) {
           </Link>
           <Nav className="ms-auto">
             {handleCart()}
-            <span className="line"></span>
-            <Link className="nav-link btn btn-success text-white me-3" to="/login">
-              <FontAwesomeIcon icon={faSignInAlt} />
-            </Link>
           </Nav>
         </Container>
       </Navbar>
